@@ -9,7 +9,6 @@ import heroImg from './background/hero-img.jpg';
 import Pavel from './Pavel.png';
 import Idan from './Idan.png';
 import Michael from './Michael.png';
-import Tomer from './Tomer.png';
 import Dana from './Dana.png';
 import Gutkin from './Gutkin.png';
 import Noam from './Noam.png';
@@ -28,7 +27,7 @@ import AlertIcon from './AlertIcon.jsx';
 import player01 from './player01.png';
 import player02 from './player02.png';
 
-export const allCards = [Pavel, Michael, Idan, Tomer, Dana, Gutkin, Goldi, Noam];
+export const allCards = [Pavel, Michael, Idan, Dana, Gutkin, Goldi, Noam];
 
 export {
   saiman,
@@ -43,7 +42,6 @@ export {
   Goldi,
   Noam,
   Idan,
-  Tomer,
   logo,
   attack,
   defense,

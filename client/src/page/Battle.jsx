@@ -20,6 +20,8 @@ const Battle = () => {
     setShowAlert,
     battleGround,
     setErrorMessage,
+    player1Ref,
+    player2Ref,
   } = useGlobalContext();
 
   const [player2, setPlayer2] = useState({});
@@ -74,7 +76,7 @@ const Battle = () => {
       setShowAlert({
         status: true,
         type: 'info',
-        message: `Initiating ${choice === 1} ? 'attack : 'defense'`,
+        message: `Initiating ${choice === 1 ? 'attack' : 'defense'}`,
       });
     } catch (error) {
       setErrorMessage(error);
@@ -100,7 +102,7 @@ const Battle = () => {
         <Card
           card={player2}
           title={player2?.playerName}
-          // cardRef={player2Ref}
+          cardRef={player2Ref}
           playerTwo
         />
 
@@ -114,7 +116,7 @@ const Battle = () => {
           <Card
             card={player1}
             title={player1?.playerName}
-            // cardRef={player1Ref}
+            cardRef={player1Ref}
             restStyles='mt-3'
           />
 

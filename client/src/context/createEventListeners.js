@@ -1,6 +1,8 @@
 import { ethers } from 'ethers';
 import { ABI } from '../contract';
 
+const emptyAccount = '0x0000000000000000000000000000000000000000';
+
 const AddNewEvent = (eventFilter, provider, callback) => {
   provider.removeListener(eventFilter);
 
@@ -11,6 +13,15 @@ const AddNewEvent = (eventFilter, provider, callback) => {
   });
 };
 
+const getCoords = (cardRef) => {
+  const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+
+  return {
+    pageX: left + width / 2,
+    pageY: top + height / 2.25,
+  };
+};
+
 export const createEventListeners = ({
   navigate,
   contract,
@@ -18,6 +29,8 @@ export const createEventListeners = ({
   walletAddress,
   setShowAlert,
   setUpdateGameData,
+  player1Ref,
+  player2Ref,
 }) => {
   const NewPlayerEventFilter = contract.filters.NewPlayer();
   AddNewEvent(NewPlayerEventFilter, provider, ({ args }) => {
@@ -50,5 +63,28 @@ export const createEventListeners = ({
 
   AddNewEvent(BattleMoveEventFilter, provider, ({ args }) => {
     console.log('Battle move initiated', args);
+  });
+
+  const RoundEndedEventFilter = contract.filters.RoundEnded();
+  AddNewEvent(RoundEndedEventFilter, provider, ({ args }) => {
+    console.log('Round ended!', args, walletAddress);
+
+    for (let i = 0; i < args.damagedPlayers.length; i += 1) {
+      if (args.damagedPlayers[i] !== emptyAccount) {
+        if (args.damagedPlayers[i] === walletAddress) {
+          getCoords(player1Ref);
+        } else if (args.damagedPlayers[i] !== walletAddress) {
+          getCoords(player2Ref);
+        }
+      } else {
+        setShowAlert({
+          status: true,
+          type: 'success',
+          message: 'Both players defended',
+        });
+      }
+    }
+
+    setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
   });
 };
