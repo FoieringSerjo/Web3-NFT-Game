@@ -22,19 +22,19 @@ export default {
     //   chainId: 43113,
     //   accounts: [process.env.PRIVATE_KEY],
     // },
-    goerli: {
-      url: 'https://rpc.ankr.com/eth_goerli',
-      chainId: 5,
-      accounts: [process.env.PRIVATE_KEY_METAMASK],
-    },
     // goerli: {
     //   url: 'https://rpc.ankr.com/eth_goerli',
-    //   fireblocks: {
-    //     privateKey: process.env.API_SECRET,
-    //     apiKey: process.env.API_KEY,
-    //     vaultAccountIds: 0,
-    //   },
+    //   chainId: 5,
+    //   accounts: [process.env.PRIVATE_KEY_METAMASK],
     // },
+    goerli: {
+      url: 'https://rpc.ankr.com/eth_goerli',
+      fireblocks: {
+        privateKey: process.env.API_SECRET,
+        apiKey: process.env.API_KEY,
+        vaultAccountIds: 0,
+      },
+    },
   },
   etherscan: {
     apiKey: {

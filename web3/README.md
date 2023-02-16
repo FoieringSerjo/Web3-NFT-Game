@@ -1,13 +1,16 @@
-# Sample Hardhat Project
+# Fireblocks Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
+Create .env file with Fireblocks Path SECRET_KEY and API_KEY
+Run the following commands inside the web3 folder if you want to deploy the contract and replace the deployed contract address inside folder "client" --> "src" --> "contract" ---> "index.js":
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
+npx hardhat clean
+npx hardhat compile
+npx hardhat run scripts/deploy.ts --network goerli
+```
+
+Run the following command from client:
+
+```
+npm run dev
 ```
