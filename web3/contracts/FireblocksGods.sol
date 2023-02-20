@@ -8,7 +8,6 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 
 /// @title FireblocksGods
 /// @notice This contract handles the token management and battle logic for the FireblocksGods game
-/// @notice Version 1.0.0
 
 contract FireblocksGods is ERC1155, Ownable, ERC1155Supply {
     string public baseURI; // baseURI where token metadata is stored
